@@ -1,3 +1,7 @@
+/*
+add necessary meta data: timestamp, p-key, checkbox.
+occurred while appending new data
+*/
 function itemAlter() {
   var s = SpreadsheetApp.getActiveSheet();
   if( s.getName() == "checklist" ) { //checks that we're on the correct sheet
@@ -21,6 +25,11 @@ function itemAlter() {
 }
 
 var scriptPrp = PropertiesService.getScriptProperties();
+/*
+reset counter
+once a day
+use acmul() to encode primary key
+*/
 function acmulReset() {
   scriptPrp.setProperty('counter', 0);
   // comment the above line otherwise it's be reset each time
@@ -32,7 +41,11 @@ function acmul(){ // accumulation
   Logger.log(counter);
   return counter;  
 }
-
+/*
+append checked item to another sheet to store
+once a day
+use append-then-delete way
+*/
 function trueVacuum() {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
   let sh = ss.getSheetByName('checklist');
